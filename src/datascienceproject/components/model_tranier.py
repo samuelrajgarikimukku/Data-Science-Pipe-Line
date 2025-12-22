@@ -18,6 +18,11 @@ from src.datascienceproject.exception import CustomException
 from src.datascienceproject.logger import logging
 from src.datascienceproject.utils import save_object,evaluate_models
 
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+import mlflow
+import mlflow.sklearn
+from urllib.parse import urlparse
+import numpy as np
 
 @dataclass
 class ModelTrainerConfig:
@@ -105,15 +110,15 @@ class ModelTrainer:
             model_names = list(params.keys())
 
             actual_model =""
-
+            
             for model in model_names:
                 if best_model_name == model:
                     actual_model = actual_model + model
 
             best_params = params[actual_model]
 
-            # mlflow.set_registry_uri("https://dagshub.com/samuelrajgarikimukku/Data-Science-Pipe-Line.mlflow")
-            # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            mlflow.set_registry_uri("https://dagshub.com/samuelrajgarikimukku/Data-Science-Pipe-Line.mlflow")
+            tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
             # ml flow
             with mlflow.start_run():

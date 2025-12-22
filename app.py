@@ -6,6 +6,16 @@ from src.datascienceproject.components.data_transformation import DataTransforma
 from src.datascienceproject.components.model_tranier import ModelTrainer, ModelTrainerConfig
 import sys
 
+# app.py (TOP of the file)
+
+import dagshub
+dagshub.init(
+    repo_owner='samuelrajgarikimukku',
+    repo_name='Data-Science-Pipe-Line',
+    mlflow=True
+)
+
+
 if __name__ == "__main__":
     logging.info("The execution has started")
 
