@@ -7,17 +7,14 @@ The pipeline is designed with industry best practices such as modular code struc
 
 The project runs locally on the developer’s machine while leveraging DagsHub, MLflow, and DVC to track experiments, manage data versions, and store model history.
 
----
-
-## Project Architecture
-
+## 📂 Project Architecture
+```
 The project follows a modular and scalable structure:
 
 Data-Science-Pipe-Line/
 ├─ README.md
 ├─ requirements.txt
 ├─ setup.py
-├─ environment.yml          # optional (conda)
 ├─ .gitignore
 ├─ app.py
 ├─ artifact/                # generated artifacts: raw/train/test csvs, models, preprocessors
@@ -41,9 +38,9 @@ Data-Science-Pipe-Line/
 │  └─ processed/
 └─ dvc.yaml / .dvc/          # if using DVC
 
----
+```
 
-## Pipeline Flow
+## 🎯 Pipeline Flow
 
 The pipeline is divided into the following stages:
 
@@ -97,13 +94,14 @@ To track experiments and avoid losing model history, MLflow is integrated with D
 ### Initialization
 MLflow tracking is initialized once at the application entry point:
 
-python
+```python
 import dagshub
 dagshub.init(
     repo_owner="samuelrajgarikimukku",
     repo_name="Data-Science-Pipe-Line",
     mlflow=True
-) 
+)
+```
 
 ## Logged Information
 
@@ -130,12 +128,13 @@ MLflow’s **Model Registry** is used to version trained models.
 
 ### Example: Load a Previous Model Version
 
+```python
 import mlflow
 
 model = mlflow.sklearn.load_model(
     "models:/Linear Regression/1"
 )
-
+```
 This allows restoring a previously better-performing model even if newer experiments perform worse.
 
 ---
